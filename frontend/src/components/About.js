@@ -8,7 +8,7 @@ export class About extends Component {
 			<section id="about" className="page-section">
 				<div className="container">
 					<div className="row align-items-center">
-					<div className="col-lg-6">
+						<div className="col-lg-6">
 							<img className="about-image" src={Profile} />
 						</div>
 						<div className="col-lg-6">

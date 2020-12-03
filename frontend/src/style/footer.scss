@@ -1,0 +1,17 @@
+@import "/index.scss";
+
+#footer {
+	padding:50px 0 0 25px;
+}
+
+.social-icon {
+    color: black;
+    display: inline;
+	margin: 0 5px;
+    transition: all 1s;
+    font-size: 1.3*$font_size;
+
+	&:hover {
+		color: $primary_color;
+	}
+}

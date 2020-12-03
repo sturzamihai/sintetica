@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../style/navbar.scss";
-import Logo from '../assets/images/logo.png';
-
+import Logo from "../assets/images/logo.png";
 
 export class Navbar extends Component {
 	render() {
@@ -34,7 +33,7 @@ export class Navbar extends Component {
 								DESPRE
 							</a>
 							<a className="nav-link" href="#">
-								GIT
+								GITHUB
 							</a>
 							<a className="nav-link cta-link" href="#">
 								ÎNCEARCĂ

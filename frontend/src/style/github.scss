@@ -1,0 +1,51 @@
+@import "./index.scss";
+
+@keyframes jump {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-7px);
+	}
+}
+
+.git-icons {
+	margin: 0 10px;
+	transition: all 1s;
+}
+
+.section-body:hover {
+	.git-icons {
+        animation: 1.5s ease jump;
+		color: $primary_color;
+    }
+    .git-icons:nth-child(1) {
+        animation-delay: .1s;
+    }
+    .git-icons:nth-child(2) {
+        animation-delay: .2s;
+    }
+    .git-icons:nth-child(3) {
+        animation-delay: .3s;
+    }
+    .git-icons:nth-child(4) {
+        animation-delay: .4s;
+    }
+	#git-heart {
+        animation: 1.5s ease infinite jump .5s;
+		color: red;
+	}
+}
+
+.github-link {
+    background: $primary_color;
+    color:white;
+    border-radius: 35px;
+    transition: all 1s;
+
+    &:hover {
+        color:white;
+        transform: translateY(-3px);
+        background-color: $secondary_color;
+    }
+}

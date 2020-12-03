@@ -16,12 +16,12 @@ export class Hero extends Component {
 								Artificială
 							</h2>
 							<p>
-								Creaza-ti acum propriul continut generat de un algoritm
-								inteligent. Descopera cu adevarat cum functioneaza inteligenta
-								artificiala.
+								Crează-ți acum propriul conținut generat de un algoritm
+								inteligent. Descoperă cu adevarăt cum funcționează inteligența
+								artificială.
 							</p>
 							<a href="#" className="btn btn-primary">
-								Afla mai multe
+								AFLĂ MAI MULTE
 							</a>
 						</div>
 						<div className="col-lg-7">

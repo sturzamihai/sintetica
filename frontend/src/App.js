@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Algorithms from "./components/Algorithms";
+import Footer from "./components/Footer";
+import GitHub from "./components/GitHub";
 
 function App() {
 	return (
@@ -12,6 +14,8 @@ function App() {
 			<Hero />
 			<Algorithms />
 			<About />
+			<GitHub />
+			<Footer />
 		</>
 	);
 }
