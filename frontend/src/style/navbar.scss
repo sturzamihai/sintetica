@@ -1,0 +1,62 @@
+@import "/index.scss";
+
+$menu_color: #97979c;
+
+.navbar {
+    padding: 30px 0;
+    
+    @include media-breakpoint-down(md) {
+        padding:0;
+    }
+}
+
+.navbar-nav {
+    @include media-breakpoint-down(md) {
+        border-bottom: $primary_color 2px solid;
+    }
+}
+
+.custom-toggler .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='" + $menu_color + "' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.nav-link {
+	margin-left: 20px;
+
+	@include media-breakpoint-down(md) {
+		margin-left: 0;
+	}
+
+	color: $menu_color;
+	font-weight: 600;
+	transition: all 1s;
+	&:hover {
+		color: $primary_color;
+	}
+}
+
+.cta-link {
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+	color: white;
+	background: $primary_color;
+	border-radius: 35px;
+
+	@include media-breakpoint-down(md) {
+        border-radius: 0px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        background:none;
+        color: $primary_color;
+
+        &:hover {
+            color: $menu_color;
+        }
+	}
+
+	&:hover {
+        color: white;
+        background-color: $secondary_color;
+		transform: translateY(-3px);
+	}
+}

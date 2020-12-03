@@ -1,0 +1,53 @@
+@import "/index.scss";
+
+#hero {
+	@include media-breakpoint-up(md) {
+		background-image: url("../assets/images/bg-right.png");
+		background-position: top right;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+}
+
+.hero-text {
+	@include media-breakpoint-down(md) {
+		text-align: center;
+	}
+	h6 {
+		font-size: 1.5 * $font_size;
+		color: $primary-color;
+
+		@include media-breakpoint-down(md) {
+			font-size: 1.2 * $font_size;
+		}
+	}
+
+	h2 {
+		font-size: 4 * $font_size;
+		@include media-breakpoint-down(md) {
+			font-size: 3 * $font_size;
+		}
+	}
+
+	a {
+		background-color: $primary-color;
+		width: 50%;
+		border-radius: 35px;
+		transition: all 1s;
+
+		&:hover {
+			transform: translateY(-3px);
+			background-color: $secondary_color;
+		}
+	}
+}
+
+#heroImage {
+	display: block;
+	margin: 0 auto;
+	height: 600px;
+
+	@include media-breakpoint-down(md) {
+		height: 300px;
+	}
+}

@@ -1,0 +1,19 @@
+@import "./index.scss";
+
+.algo-icon {
+    color: $secondary_color;
+    margin: 25px 0;
+    transition: all 1s;
+}
+
+.algo-parent:hover {
+    .algo-icon {
+        transform: translateY(-3px);
+        color: $primary_color;
+    }
+}
+
+.bonus-badge {
+    background: $primary_color;
+    color: white;
+}

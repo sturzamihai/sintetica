@@ -1,0 +1,54 @@
+@import "/index.scss";
+
+#about {
+	@include media-breakpoint-up(md) {
+		background-image: url("../assets/images/bg-left.png");
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+}
+
+.about-image {
+	height: 350px;
+	display: block;
+	margin: 0 auto;
+	transition: all 1s;
+    border-radius: 100%;
+    background: $white;
+
+    &:hover {
+        background: $primary_color;
+		transform: translateY(-3px);
+	}
+}
+
+.info-header {
+	margin: 20px 0;
+
+	h2 {
+		font-size: 3 * $font_size;
+		@include media-breakpoint-down(md) {
+			font-size: 2 * $font_size;
+		}
+		margin: 0 0 10px 0;
+	}
+
+	#longSeparator {
+		display: inline-block;
+		height: 1px;
+		width: 5%;
+		margin-right: 5px;
+		border-top: 10px solid $primary_color;
+		border-radius: 35px;
+	}
+
+	#shortSeparator {
+		display: inline-block;
+		height: 1px;
+		width: 2%;
+		margin-left: 5px;
+		border-top: 10px solid $primary_color;
+		border-radius: 35px;
+	}
+}
