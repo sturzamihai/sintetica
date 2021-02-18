@@ -1,1 +1,0 @@
-web: sh-c 'cd ./frontend/ && node start'
