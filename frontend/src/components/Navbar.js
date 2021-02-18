@@ -26,13 +26,13 @@ export class Navbar extends Component {
 						id="mainNavbar"
 					>
 						<div className="navbar-nav">
-							<a className="nav-link" href="#">
+							<a className="nav-link" href="#algorithms">
 								ALGORITMI
 							</a>
-							<a className="nav-link active" href="#">
+							<a className="nav-link active" href="#about">
 								DESPRE
 							</a>
-							<a className="nav-link" href="#">
+							<a className="nav-link" href="https://github.com/sturzamihai/sintetica">
 								GITHUB
 							</a>
 							<a className="nav-link cta-link" href="#">

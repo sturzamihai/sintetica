@@ -20,7 +20,7 @@ export class Hero extends Component {
 								inteligent. Descoperă cu adevarăt cum funcționează inteligența
 								artificială.
 							</p>
-							<a href="#" className="btn btn-primary">
+							<a href="#about" className="btn btn-primary">
 								AFLĂ MAI MULTE
 							</a>
 						</div>
