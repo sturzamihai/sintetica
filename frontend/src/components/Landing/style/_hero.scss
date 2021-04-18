@@ -1,8 +1,6 @@
-@import "/index.scss";
-
 #hero {
 	@include media-breakpoint-up(lg) {
-		background-image: url("../assets/images/bg-right.png");
+		background-image: url("../../../assets/images/bg-right.png");
 		background-position: top right;
 		background-repeat: no-repeat;
 		background-size: contain;

@@ -1,0 +1,24 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+
+$primary_font: 'Montserrat';
+$primary_color: #176DFF;
+$secondary_color: #7E3DFF;
+$font_color: #252525;
+$font_size: 16px;
+
+.page-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: $font_size;
+  color: $font_size;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

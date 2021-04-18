@@ -1,22 +1,28 @@
-import logo from "./logo.svg";
 import "./style/App.scss";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Algorithms from "./components/Algorithms";
 import Footer from "./components/Footer";
 import GitHub from "./components/GitHub";
+import Selector from "./components/Demos";
+import Landing from "./components/Landing";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-function App() {
+
+const App = () => {
 	return (
-		<>
+		<Router>
 			<Navbar />
-			<Hero />
-			<Algorithms />
-			<About />
+			<Switch>
+				<Route path="/incearca">
+					<Selector/>
+				</Route>
+
+				<Route path="/">
+					<Landing/>
+				</Route>
+			</Switch>
 			<GitHub />
 			<Footer />
-		</>
+		</Router>
 	);
 }
 

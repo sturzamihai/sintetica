@@ -1,8 +1,6 @@
-@import "/index.scss";
-
 #about {
 	@include media-breakpoint-up(lg) {
-		background-image: url("../assets/images/bg-left.png");
+		background-image: url("../../../assets/images/bg-left.png");
 		background-position: top left;
 		background-repeat: no-repeat;
 		background-size: contain;
