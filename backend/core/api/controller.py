@@ -4,7 +4,7 @@ from .functions import blob_perception_analysis
 
 api = Blueprint('api', __name__)
 
-@api.route('/perception', methods=['GET'])
+@api.route('/perception', methods=['POST'])
 def get_index():
     packet = request.json
     if packet:

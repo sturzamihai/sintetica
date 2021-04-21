@@ -2,7 +2,13 @@ import textblob
 
 def blob_perception_analysis(message):
     blob = textblob.TextBlob(message)
-    blob = blob.translate()
+    original_blob = blob
+
+    try:
+        blob = blob.translate()
+    except textblob.exceptions.NotTranslated:
+        if blob.detect_language != 'en':
+            return {'error': 'Text does not have any semantic meaning.'}
 
     nouns = []
     for word, tag in blob.tags:
