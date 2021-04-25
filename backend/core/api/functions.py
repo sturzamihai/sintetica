@@ -8,7 +8,7 @@ def blob_perception_analysis(message):
         if blob.detect_language() != 'en':
             blob = blob.translate()
     except textblob.exceptions.NotTranslated:
-        return {'error': 'Text does not have any semantic meaning.'}
+        return {'error': 'Textul nu are nicio semnificație semantică.'}
 
     nouns = []
     for word, tag in blob.tags:
@@ -41,5 +41,5 @@ def blob_perception_analysis(message):
         'polarity': avg_polarity/len(blob.sentences),
         'subjectivity': avg_subjectivity/len(blob.sentences),
         'summary': nouns,
-        'warning': None if low_semantics == False else "Your text has sentences with low semantic meaning. Results may not be accurate."
+        'warning': None if low_semantics == False else "Textul dat conține propoziții cu înțeles semantic redus. Rezultatele nu vor fi corecte."
     }
