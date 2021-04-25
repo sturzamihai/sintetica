@@ -1,4 +1,10 @@
-import textblob, os, requests
+from typing import BinaryIO
+import textblob, os, requests, torchvision, torch, base64, matplotlib, time
+from io import BytesIO
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from PIL import Image
+from random import randint
 
 
 def blob_perception_analysis(message):
@@ -68,23 +74,43 @@ def gpt2_generate(context, generator):
         }
 
     original_generation = generator(
-        str(translated_blob), max_length=len(context) * 10,
+        str(translated_blob),
+        max_length=len(context) * 10,
         num_return_sequences=1)[0]['generated_text']
     blob_generation = textblob.TextBlob(original_generation)
 
     try:
         if blob.detect_language() != 'en':
-            translated_generation = str(blob_generation.translate(to=blob.detect_language()))
+            translated_generation = str(
+                blob_generation.translate(to=blob.detect_language()))
         else:
             translated_generation = None
     except textblob.exceptions.NotTranslated as e:
         translated_generation = e
 
     results = {
-        'original':
-        original_generation,
-        'translated':
-        translated_generation
+        'original': original_generation,
+        'translated': translated_generation
     }
 
     return results
+
+
+def pgg_generator(model):
+    torch.manual_seed(time.time())
+
+    noise, _ = model.buildNoiseData(1)
+    with torch.no_grad():
+        generated_images = model.test(noise)
+
+    matplotlib.use('agg')
+    grid = torchvision.utils.make_grid(generated_images.clamp(min=-1, max=1),
+                                       normalize=True)
+    plt.figure(figsize=(5.12, 5.12), dpi=100)
+    plt.axis('off')
+    plt.imshow(grid.permute(1, 2, 0).cpu().numpy())
+    buf = BytesIO()
+    plt.savefig(buf,format='png')
+    buf.seek(0)
+
+    return {'image': u'data:img/png;base64,'+base64.b64encode(buf.getvalue()).decode('utf-8')}

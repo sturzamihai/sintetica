@@ -15,6 +15,7 @@ import deblur from "../../assets/images/bg-deblur.jpg";
 import sentiment from "../../assets/images/bg-sentiment.png";
 import Perception from "./Perception";
 import Generator from "./Generator";
+import GAN from "./GAN";
 
 const Selector = () => {
 	let match = useRouteMatch();
@@ -47,10 +48,10 @@ const Selector = () => {
 											size="4x"
 											className="algo-icon"
 										/>
-										<h5>Progressive Growing of GANs</h5>
+										<h5>Generare de imagini (profil)</h5>
 										<p>
-											Generarea de chipuri umane prin renumitul algoritm creat
-											de nVidia.
+											Vei descoperi puterea unui GAN care încearcă să imite cât
+											de bine poate un chip uman.
 										</p>
 									</div>
 								</div>
@@ -70,8 +71,8 @@ const Selector = () => {
 										/>
 										<h5>Generare de text</h5>
 										<p>
-											Crearea unui text nou prin intermediul unui prefix
-											furnizat de utilizator.
+											Vei crea un text nou prin intermediul unui prefix furnizat
+											la început.
 										</p>
 									</div>
 								</div>
@@ -111,8 +112,8 @@ const Selector = () => {
 										/>
 										<h5>Analiză de sentiment și percepția brandului</h5>
 										<p>
-											Analiză de text din care rezulta indici cheie referitoare
-											la percepția unui brand.
+											Vei vedea o analiză de text din care rezultă indici cheie
+											referitori la percepția unui brand.
 										</p>
 									</div>
 								</div>
@@ -126,6 +127,9 @@ const Selector = () => {
 			</Route>
 			<Route path={`${match.path}/generator`}>
 				<Generator />
+			</Route>
+			<Route path={`${match.path}/gans`}>
+				<GAN />
 			</Route>
 		</Switch>
 	);

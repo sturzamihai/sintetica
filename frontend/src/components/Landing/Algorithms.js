@@ -24,18 +24,18 @@ const Algorithms = () => {
 				<div className="row text-center">
 					<div className="col-lg-4 algo-parent">
 						<FontAwesomeIcon icon={faLaugh} size="4x" className="algo-icon" />
-						<h5>Progressive Growing of GANs</h5>
+						<h5>Generare de imagini (profil)</h5>
 						<p>
-							Generarea de chipuri umane prin renumitul algoritm creat de
-							nVidia.
+							Vei descoperi puterea unui GAN care încearcă să imite cât de bine
+							poate un chip uman.
 						</p>
 					</div>
 					<div className="col-lg-4 algo-parent">
 						<FontAwesomeIcon icon={faFileAlt} size="4x" className="algo-icon" />
 						<h5>Generare de text</h5>
 						<p>
-							Crearea unui text nou prin intermediul unui prefix furnizat de
-							utilizator.
+							Vei crea un text nou prin intermediul unui prefix furnizat la
+							început.
 						</p>
 					</div>
 					<div className="col-lg-4 algo-parent">

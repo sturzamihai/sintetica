@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from transformers import pipeline, set_seed, AutoTokenizer, AutoModelWithLMHead
+import torch
 
 from config import BaseConfig
 
@@ -14,6 +15,13 @@ def create_app(environment):
 
     app.config['GPT_GENERATOR'] = pipeline('text-generation', model='gpt2')
     set_seed(app.config['TR_SEED'])
+
+    app.config['PGG_MODEL'] = torch.hub.load(
+        'facebookresearch/pytorch_GAN_zoo:hub',
+        'PGAN',
+        model_name='celebAHQ-512',
+        pretrained=True,
+        useGPU=False)
 
     from core.api.controller import api
 
