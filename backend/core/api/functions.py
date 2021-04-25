@@ -5,19 +5,27 @@ def blob_perception_analysis(message):
     original_blob = blob
 
     try:
-        blob = blob.translate()
+        if blob.detect_language() != 'en':
+            blob = blob.translate()
     except textblob.exceptions.NotTranslated:
-        if blob.detect_language != 'en':
-            return {'error': 'Text does not have any semantic meaning.'}
+        return {'error': 'Text does not have any semantic meaning.'}
 
     nouns = []
     for word, tag in blob.tags:
         if tag == 'NN' and len(nouns)<=8:
             nouns.append(word)
 
+    low_semantics = False
     text_parts = []
-    for word, pos in blob.tags:
-        text_parts.append([word, pos])
+    for sentence in blob.sentences:
+        sentence_parts = []
+        for word, pos in sentence.tags:
+            sentence_parts.append([word, pos])
+
+        if len(sentence_parts) < 5: 
+            low_semantics = True
+            
+        text_parts.append(sentence_parts)
 
     avg_polarity = 0
     avg_subjectivity = 0
@@ -27,9 +35,11 @@ def blob_perception_analysis(message):
         avg_subjectivity += sentence.sentiment.subjectivity
 
     return {
+        'foregin': False if original_blob.detect_language() == 'en' else original_blob.detect_language(),
         'sentences': len(blob.sentences),
         'tags': text_parts,
         'polarity': avg_polarity/len(blob.sentences),
         'subjectivity': avg_subjectivity/len(blob.sentences),
-        'summary': nouns
+        'summary': nouns,
+        'warning': None if low_semantics == False else "Your text has sentences with low semantic meaning. Results may not be accurate."
     }
