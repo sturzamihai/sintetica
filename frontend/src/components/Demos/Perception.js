@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../assets/images/sentiment.png";
+import banner from "../../assets/images/bg-sentiment.png";
 const { useState, useEffect } = React;
 
 export const Perception = () => {
@@ -7,6 +7,7 @@ export const Perception = () => {
 	const [response, setResponse] = useState({});
 	const [blobData, setBlobData] = useState("");
 	const [elements, setElements] = useState([]);
+
 	const sendRequest = async (e) => {
 		e.preventDefault();
 		if (requested) return;
@@ -61,6 +62,7 @@ export const Perception = () => {
 				VBZ: "Verb(Prezent)",
 			};
 			var proposition_tags = [];
+
 			if (response.foregin)
 				proposition_tags.push(
 					<div key={++keyIdx} className="alert alert-warning" role="alert">
@@ -68,6 +70,7 @@ export const Perception = () => {
 						textul a fost tradus in engleză.
 					</div>
 				);
+
 			response.tags.forEach((element, idx) => {
 				var local_tags = [];
 				element.forEach((part, poz) => {

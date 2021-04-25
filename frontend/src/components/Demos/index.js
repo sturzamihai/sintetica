@@ -12,8 +12,9 @@ import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import pgg from "../../assets/images/bg-pgg.png";
 import gpt from "../../assets/images/bg-gpt.jpg";
 import deblur from "../../assets/images/bg-deblur.jpg";
-import sentiment from "../../assets/images/sentiment.png";
-import { Perception } from "./Perception";
+import sentiment from "../../assets/images/bg-sentiment.png";
+import Perception from "./Perception";
+import Generator from "./Generator";
 
 const Selector = () => {
 	let match = useRouteMatch();
@@ -54,7 +55,7 @@ const Selector = () => {
 									</div>
 								</div>
 							</Link>
-							<Link to={`${match.url}/gpt`} className="col-lg-6 algo-col">
+							<Link to={`${match.url}/generator`} className="col-lg-6 algo-col">
 								<div
 									className="algo-box"
 									style={{
@@ -67,10 +68,10 @@ const Selector = () => {
 											size="4x"
 											className="algo-icon"
 										/>
-										<h5>GPT-3</h5>
+										<h5>Generare de text</h5>
 										<p>
-											Generarea de text în funcție de o fraza cheie prin
-											algoritmii OpenAI.
+											Crearea unui text nou prin intermediul unui prefix
+											furnizat de utilizator.
 										</p>
 									</div>
 								</div>
@@ -122,6 +123,9 @@ const Selector = () => {
 			</Route>
 			<Route path={`${match.path}/perceptie`}>
 				<Perception />
+			</Route>
+			<Route path={`${match.path}/generator`}>
+				<Generator />
 			</Route>
 		</Switch>
 	);

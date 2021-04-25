@@ -32,10 +32,10 @@ const Algorithms = () => {
 					</div>
 					<div className="col-lg-4 algo-parent">
 						<FontAwesomeIcon icon={faFileAlt} size="4x" className="algo-icon" />
-						<h5>GPT-3</h5>
+						<h5>Generare de text</h5>
 						<p>
-							Generarea de text în funcție de o fraza cheie prin algoritmii
-							OpenAI.
+							Crearea unui text nou prin intermediul unui prefix furnizat de
+							utilizator.
 						</p>
 					</div>
 					<div className="col-lg-4 algo-parent">
