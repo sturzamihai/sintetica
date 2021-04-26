@@ -26,42 +26,37 @@ export const Generator = () => {
 		setRequested(false);
 	};
 
+	const processText = (text) => {
+		const result = text.split("\n").map((chunk, index) => 
+			<p key={`pchunk${index}`}>{chunk}</p>
+		);
+
+		return result;
+	};
+
 	useEffect(() => {
-		var keyIdx = 0;
-
 		if (response.original) {
-			var text_result = [];
-			response.original.split("\n").forEach((element) => {
-				text_result.push(<p>{element}</p>);
-			});
+			const original = <div key="owrap">{processText(response.original)}</div>;
+			const translated = response.translated ? (
+				<div key="twrap">
+					<h4 key="thead">Traducerea generării</h4>
+					{processText(response.translated)}
+				</div>
+			) : null;
 
-			var translated_result = []
-			if (response.translated) {
-				translated_result = [
-					<h4 key={++keyIdx}>Traducerea generării</h4>,
-				];
-				response.translated.split("\n").forEach((element) => {
-					translated_result.push(<p>{element}</p>);
-				});
-			}
-
-			var result_elements = [
-				<div key={++keyIdx} className="info-header my-3">
-					<h4 key={++keyIdx}>Rezultatele generării</h4>
-					<span key={++keyIdx} id="longSeparator"></span>
-					<span key={++keyIdx} id="shortSeparator"></span>
+			var resultElements = [
+				<div key="iwrap" className="info-header my-3">
+					<h3 key="ihead">Rezultatele generării</h3>
+					<span key="ishort" id="longSeparator"></span>
+					<span key="ilong" id="shortSeparator"></span>
 				</div>,
-				React.createElement("div", { key: ++keyIdx }, ...text_result),
-				React.createElement(
-					"div",
-					{ className: "info-header my-3", key: ++keyIdx },
-					...translated_result
-				),
+				original,
+				translated,
 			];
-			setElements(result_elements);
+			setElements(resultElements);
 		} else if (response.error) {
 			setElements([
-				<div key={++keyIdx} className="alert alert-danger" role="alert">
+				<div key="ebody" className="alert alert-danger" role="alert">
 					{response.error}
 				</div>,
 			]);
