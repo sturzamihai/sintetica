@@ -17,7 +17,7 @@ const Footer = () => {
 						<img src={Logo} height="50" />
 					</div>
 					<div className="col-lg-6 text-center text-lg-right">
-						<a href="#" className="btn github-link">
+						<a href="/incearca" className="btn github-link">
 							ÎNCEARCĂ
 						</a>
 					</div>

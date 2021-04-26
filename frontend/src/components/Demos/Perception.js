@@ -26,130 +26,123 @@ export const Perception = () => {
 		setRequested(false);
 	};
 
-	useEffect(() => {
-		var keyIdx = 0;
+	const processTags = (tags) => {
+		var tagMap = {
+			CC: "Conjuctie coordonatoare",
+			CD: "Cifră cardinală",
+			DT: "Determinant",
+			EX: "Condiție existențială",
+			FW: "Cuvânt străin",
+			IN: "Prepoziție",
+			JJ: "Adjectiv",
+			JJR: "Adjectiv comparativ",
+			JJS: "Adjectiv superlativ",
+			LS: "Element al unei liste",
+			MD: "Posibilitate",
+			NN: "Substantiv",
+			NNS: "Substantiv (Plural)",
+			NNP: "Substantiv propriu",
+			NNPS: "Substantiv propriu (Plural)",
+			PDT: "Predeterminator",
+			POS: "Terminație posesivă",
+			PRP: "Pronume personal (I)",
+			PRP$: "Pronume posesiv",
+			RB: "Adverb",
+			RBR: "Adverb comparativ",
+			RBS: "Adverb superlativ",
+			UH: "Interjectie",
+			VB: "Verb",
+			VBD: "Verb (Timpul trecut)",
+			VBG: "Verb (Gerunziu/Participiu prezent)",
+			VBN: "Verb (Participiu trecut)",
+			VBP: "Verb(Prezent)",
+			VBZ: "Verb(Prezent)",
+		};
 
-		if (response.tags) {
-			var tag_map = {
-				CC: "Conjuctie coordonatoare",
-				CD: "Cifră cardinală",
-				DT: "Determinant",
-				EX: "Condiție existențială",
-				FW: "Cuvânt străin",
-				IN: "Prepoziție",
-				JJ: "Adjectiv",
-				JJR: "Adjectiv comparativ",
-				JJS: "Adjectiv superlativ",
-				LS: "Element al unei liste",
-				MD: "Posibilitate",
-				NN: "Substantiv",
-				NNS: "Substantiv (Plural)",
-				NNP: "Substantiv propriu",
-				NNPS: "Substantiv propriu (Plural)",
-				PDT: "Predeterminator",
-				POS: "Terminație posesivă",
-				PRP: "Pronume personal (I)",
-				PRP$: "Pronume posesiv",
-				RB: "Adverb",
-				RBR: "Adverb comparativ",
-				RBS: "Adverb superlativ",
-				UH: "Interjectie",
-				VB: "Verb",
-				VBD: "Verb (Timpul trecut)",
-				VBG: "Verb (Gerunziu/Participiu prezent)",
-				VBN: "Verb (Participiu trecut)",
-				VBP: "Verb(Prezent)",
-				VBZ: "Verb(Prezent)",
-			};
-			var proposition_tags = [];
-
-			if (response.foregin)
-				proposition_tags.push(
-					<div key={++keyIdx} className="alert alert-warning" role="alert">
-						Datorită datelor limitate in limba aleasă ({response.foregin}),
-						textul a fost tradus in engleză.
-					</div>
-				);
-
-			response.tags.forEach((element, idx) => {
-				var local_tags = [];
-				element.forEach((part, poz) => {
-					local_tags.push(
-						<div className="col-auto text-center my-2" key={++keyIdx}>
-							<span className="tag-word" key={++keyIdx}>
-								{part[0]}
+		const propositionTags = tags.map((proposition, num) => (
+			<div key={`twrap${num}`}>
+				<h6 className="mt-3 mb-1" key={`theader${num}`}>
+					Analiza propozitiei {num + 1}
+				</h6>
+				<hr style={{ width: "25%", float: "left", margin: 0 }} />
+				<div className="row" key={`trow${num}`}>
+					{proposition.map((tag, index) => (
+						<div className="col-auto text-center my-2" key={`tcol${index}`}>
+							<span className="tag-word" key={`tword${index}`}>
+								{tag[0]}
 							</span>
 							<br />
-							<span className="tag-part" key={++keyIdx}>
-								{tag_map[part[1]]}
+							<span className="tag-part" key={`tpart${index}`}>
+								{tagMap[tag[1]]}
 							</span>
 						</div>
-					);
-				});
+					))}
+				</div>
+			</div>
+		));
 
-				proposition_tags.push([
-					<h6 className="mt-3 mb-1">Analiza propozitiei {idx + 1}</h6>,
-					<hr style={{ width: "25%", float: "left", margin: 0 }} />,
-					React.createElement(
-						"div",
-						{ className: "row", key: ++keyIdx },
-						...local_tags
-					),
-				]);
-			});
+		return propositionTags;
+	};
 
-			var result_elements = [
-				<div key={++keyIdx} className="info-header my-3">
-					<h3 key={++keyIdx}>Rezultatele analizei</h3>
-					<span key={++keyIdx} id="longSeparator"></span>
-					<span key={++keyIdx} id="shortSeparator"></span>
+	const handleAPIWarnings = (warnings) => {
+		const warningList = warnings.map((warn, index) => (
+			<div key={`warn${index}`} className="alert alert-warning" role="alert">
+				{warn}
+			</div>
+		));
+
+		return warningList;
+	};
+	useEffect(() => {
+		if (response.tags) {
+			const tags = processTags(response.tags, response.foregin);
+			const warnings = handleAPIWarnings(response.warnings);
+
+			const resultElements = [
+				warnings,
+				<div key="iwrap" className="info-header my-3">
+					<h3 key="ihead">Rezultatele analizei</h3>
+					<span key="ishort" id="longSeparator"></span>
+					<span key="ilong" id="shortSeparator"></span>
 				</div>,
-				<span key={++keyIdx} className="btn statistic-badge btn-dark mr-2 mb-2">
+				<span key="swrap" className="btn statistic-badge btn-dark mr-2 mb-2">
 					Popoziții&nbsp;
-					<span key={++keyIdx} className="badge badge-light">
+					<span key="scounter" className="badge badge-light">
 						{response.sentences}
 					</span>
 				</span>,
 				<span
-					key={++keyIdx}
+					key="pwrap"
 					className={
 						"btn statistic-badge mr-2 mb-2 " +
 						(response.polarity > 0 ? "btn-success" : "btn-danger")
 					}
 				>
 					Polaritate: {response.polarity > 0 ? "Pozitivă" : "Negativă"}&nbsp;
-					<span key={++keyIdx} className="badge badge-light">
+					<span key="pcounter" className="badge badge-light">
 						{response.polarity}
 					</span>
 				</span>,
 				<span
-					key={++keyIdx}
+					key="owrap"
 					className={
 						"btn statistic-badge mb-2 " +
 						(response.subjectivity < 0.5 ? "btn-success" : "btn-danger")
 					}
 				>
-					Perspectivă:{" "}
+					Perspectivă:&nbsp;
 					{response.subjectivity > 0.5 ? "Subiectivă" : "Obiectivă"}&nbsp;
-					<span key={++keyIdx} className="badge badge-light">
+					<span key="ocounter" className="badge badge-light">
 						{response.subjectivity}
 					</span>
 				</span>,
-				...proposition_tags,
+				tags,
 			];
 
-			if (response.warning) {
-				result_elements.unshift(
-					<div key={++keyIdx} className="alert alert-warning" role="warning">
-						{response.warning}
-					</div>
-				);
-			}
-
-			setElements(result_elements);
+			setElements(resultElements);
 		} else if (response.error) {
 			setElements([
-				<div key={++keyIdx} className="alert alert-danger" role="alert">
+				<div key="ewrap" className="alert alert-danger" role="alert">
 					{response.error}
 				</div>,
 			]);
