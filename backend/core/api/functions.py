@@ -112,3 +112,8 @@ def pgg_generator(model):
     buf.seek(0)
 
     return {'image': u'data:img/png;base64,'+base64.b64encode(buf.getvalue()).decode('utf-8')}
+
+def style_transfer(style,content,model):
+    
+
+    return {'image': u'data:img/png;base64,'}

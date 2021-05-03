@@ -27,9 +27,9 @@ export const Generator = () => {
 	};
 
 	const processText = (text) => {
-		const result = text.split("\n").map((chunk, index) => 
-			<p key={`pchunk${index}`}>{chunk}</p>
-		);
+		const result = text
+			.split("\n")
+			.map((chunk, index) => <p key={`pchunk${index}`}>{chunk}</p>);
 
 		return result;
 	};

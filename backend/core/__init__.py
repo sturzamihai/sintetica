@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from transformers import pipeline, set_seed, AutoTokenizer, AutoModelWithLMHead
 import torch
+import tensorflow_hub as tf_hub
 
 from config import BaseConfig
 
@@ -22,6 +23,8 @@ def create_app(environment):
         model_name='celebAHQ-512',
         pretrained=True,
         useGPU=False)
+
+    app.config['ST_MODEL'] = tf_hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
 
     from core.api.controller import api
 

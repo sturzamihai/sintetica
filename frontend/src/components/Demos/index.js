@@ -4,18 +4,19 @@ import {
 	faHeart,
 	faLaugh,
 	faFileAlt,
-	faEye,
 	faCommentDots,
 } from "@fortawesome/free-regular-svg-icons";
+import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
 import pgg from "../../assets/images/bg-pgg.png";
 import gpt from "../../assets/images/bg-gpt.jpg";
-import deblur from "../../assets/images/bg-deblur.jpg";
+import ss from "../../assets/images/bg-ss.jpeg";
 import sentiment from "../../assets/images/bg-sentiment.png";
 import Perception from "./Perception";
 import Generator from "./Generator";
 import GAN from "./GAN";
+import StyleTransfer from "./StyleTransfer";
 
 const Selector = () => {
 	let match = useRouteMatch();
@@ -72,27 +73,28 @@ const Selector = () => {
 										<h5>Generare de text</h5>
 										<p>
 											Vei crea un text nou prin intermediul unui prefix furnizat
-											la început.
+											de tine.
 										</p>
 									</div>
 								</div>
 							</Link>
-							<Link to={`${match.url}/deblur`} className="col-lg-6 algo-col">
+							<Link to={`${match.url}/transfer`} className="col-lg-6 algo-col">
 								<div
 									className="algo-box"
 									style={{
-										background: `url(${deblur}) no-repeat center center / cover`,
+										background: `url(${ss}) no-repeat center center / cover`,
 									}}
 								>
 									<div className="algo-blur">
 										<FontAwesomeIcon
-											icon={faEye}
+											icon={faExchangeAlt}
 											size="4x"
 											className="algo-icon"
 										/>
-										<h5>Image deblur</h5>
+										<h5>Transfer de stil</h5>
 										<p>
-											Sporirea clarității unei imagini printr-un Autoencoder.
+											Vei schimba ambientul general al unei poze prin
+											intermediul caracteristicilor stilistice al altei poze.
 										</p>
 									</div>
 								</div>
@@ -130,6 +132,9 @@ const Selector = () => {
 			</Route>
 			<Route path={`${match.path}/gans`}>
 				<GAN />
+			</Route>
+			<Route path={`${match.path}/transfer`}>
+				<StyleTransfer/>
 			</Route>
 		</Switch>
 	);

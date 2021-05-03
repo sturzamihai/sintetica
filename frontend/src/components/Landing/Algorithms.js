@@ -4,9 +4,9 @@ import {
 	faHeart,
 	faLaugh,
 	faFileAlt,
-	faEye,
 	faCommentDots,
 } from "@fortawesome/free-regular-svg-icons";
+import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Algorithms = () => {
 	return (
@@ -34,14 +34,21 @@ const Algorithms = () => {
 						<FontAwesomeIcon icon={faFileAlt} size="4x" className="algo-icon" />
 						<h5>Generare de text</h5>
 						<p>
-							Vei crea un text nou prin intermediul unui prefix furnizat la
-							început.
+							Vei crea un text nou prin intermediul unui prefix furnizat de
+							tine.
 						</p>
 					</div>
 					<div className="col-lg-4 algo-parent">
-						<FontAwesomeIcon icon={faEye} size="4x" className="algo-icon" />
-						<h5>Image deblur</h5>
-						<p>Sporirea clarității unei imagini printr-un Autoencoder.</p>
+						<FontAwesomeIcon
+							icon={faExchangeAlt}
+							size="4x"
+							className="algo-icon"
+						/>
+						<h5>Transfer de stil</h5>
+						<p>
+							Vei schimba ambientul general al unei poze prin intermediul
+							caracteristicilor stilistice al altei poze.
+						</p>
 					</div>
 				</div>
 				<div className="row text-center">

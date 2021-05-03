@@ -21,16 +21,19 @@ export const GAN = () => {
 	};
 
 	useEffect(() => {
-		var keyIdx = 0;
-
 		if (response.image) {
-			var result_elements = (
-				<img className="mx-auto d-block" key={++keyIdx} src={response.image} />
+			const resultElements = (
+				<img
+					className="mx-auto d-block"
+					key="idata"
+					alt="Auto-Generated with Sintetica"
+					src={response.image}
+				/>
 			);
-			setElements(result_elements);
+			setElements(resultElements);
 		} else if (response.error) {
 			setElements([
-				<div key={++keyIdx} className="alert alert-danger" role="alert">
+				<div key="ebody" className="alert alert-danger" role="alert">
 					{response.error}
 				</div>,
 			]);
