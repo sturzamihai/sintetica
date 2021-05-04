@@ -17,14 +17,11 @@ def create_app(environment):
     app.config['GPT_GENERATOR'] = pipeline('text-generation', model='gpt2')
     set_seed(app.config['TR_SEED'])
 
-    app.config['PGG_MODEL'] = torch.hub.load(
-        'facebookresearch/pytorch_GAN_zoo:hub',
-        'PGAN',
-        model_name='celebAHQ-512',
-        pretrained=True,
-        useGPU=False)
+    from core.models import PGGANs
+    app.config['PGG_MODEL'] = PGGANs()
 
-    app.config['ST_MODEL'] = tf_hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+    from core.models import StyleTransfer
+    app.config['ST_MODEL'] = StyleTransfer()
 
     from core.api.controller import api
 

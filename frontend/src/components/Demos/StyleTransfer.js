@@ -6,7 +6,7 @@ export const StyleTransfer = () => {
 	const [requested, setRequested] = useState(false);
 	const [response, setResponse] = useState({});
 	const [styleImage, _setStyleImage] = useState("");
-	const [contextImage, _setContextImage] = useState("");
+	const [contentImage, _setContentImage] = useState("");
 	const [elements, setElements] = useState([]);
 
 	const sendRequest = async (e) => {
@@ -18,9 +18,9 @@ export const StyleTransfer = () => {
 		const requestOptions = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ blob: "" }),
+			body: JSON.stringify({ style: styleImage, content: contentImage }),
 		};
-		await fetch("http://localhost:5000/api/perception", requestOptions)
+		await fetch("http://localhost:5000/api/transfer", requestOptions)
 			.then((req) => req.json())
 			.then((data) => setResponse(data));
 
@@ -46,16 +46,22 @@ export const StyleTransfer = () => {
 		});
 	};
 
-	const setContextImage = (e) => {
+	const setContentImage = (e) => {
 		processImage(e, (image) => {
-			_setContextImage(image);
+			_setContentImage(image);
 		});
 	};
 
 	useEffect(() => {
-		if (response.tags) {
-			const resultElements = [];
-
+		if (response.image) {
+			const resultElements = (
+				<img
+					className="mx-auto d-block"
+					key="idata"
+					alt="Auto-Generated with Sintetica"
+					src={response.image}
+				/>
+			);
 			setElements(resultElements);
 		} else if (response.error) {
 			setElements([
@@ -85,9 +91,11 @@ export const StyleTransfer = () => {
 					<form onSubmit={sendRequest}>
 						<div className="mb-3">
 							<label htmlFor="formData" className="form-label">
-								Scrie mai jos o părere despre un brand/produs/serviciu/etc.
-								exact cum ai face și pe Google Reviews, Emag sau alte locuri
-								speciale pentru reviews.
+								Încarcă două imagini, reprezentative din punct de vedere al
+								contextului respectiv al stilului și descoperă cum algoritmul
+								dezvoltat de cercetătorii de la&nbsp;
+								<a href="https://www.tensorflow.org">Tensorflow</a>&nbsp;
+								încearcă să le îmbine, ajungând la rezultate nemaivăzute.
 							</label>
 							<div className="row">
 								<div className="col-lg-6">
@@ -95,21 +103,22 @@ export const StyleTransfer = () => {
 										<input
 											type="file"
 											className="custom-file-input"
-											name="context"
-											id="context"
+											name="content"
+											id="content"
 											accept=".jpef, .png, .jpg"
-											onChange={setContextImage}
+											onChange={setContentImage}
 										/>
-										<label className="custom-file-label" htmlFor="context">
-											Alege imaginea contextuala:
+										<label className="custom-file-label" htmlFor="content">
+											Alege imaginea contextuală:
 										</label>
 									</div>
-									{contextImage && (
+									{contentImage && (
 										<div>
 											<p>Previzualizare:</p>
 											<img
-												src={contextImage}
+												src={contentImage}
 												height="150px"
+												alt="Content preview"
 												className="d-block mx-auto"
 											/>
 										</div>
@@ -126,7 +135,7 @@ export const StyleTransfer = () => {
 											onChange={setStyleImage}
 										/>
 										<label className="custom-file-label" htmlFor="style">
-											Alege imaginea stilistica:
+											Alege imaginea stilistică:
 										</label>
 									</div>
 									{styleImage && (
@@ -135,6 +144,7 @@ export const StyleTransfer = () => {
 											<img
 												src={styleImage}
 												height="150px"
+												alt="Style preview"
 												className="d-block mx-auto"
 											/>
 										</div>
@@ -147,7 +157,7 @@ export const StyleTransfer = () => {
 							className="btn github-link mb-3"
 							disabled={requested}
 						>
-							Trimite părerea
+							Trimite
 						</button>
 					</form>
 					{elements}
