@@ -14,8 +14,8 @@ def create_app(environment):
 
     app.config.from_object(environment)
 
-    app.config['GPT_GENERATOR'] = pipeline('text-generation', model='gpt2')
-    set_seed(app.config['TR_SEED'])
+    from core.models import GPT
+    app.config['GPT_GENERATOR'] = GPT()
 
     from core.models import PGGANs
     app.config['PGG_MODEL'] = PGGANs()

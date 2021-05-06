@@ -1,6 +1,5 @@
 from flask import Blueprint, json, jsonify, request, current_app
-from werkzeug.exceptions import abort
-from .functions import blob_perception_analysis, gpt2_generate
+from .functions import blob_perception_analysis, api_abort
 
 api = Blueprint('api', __name__)
 
@@ -14,12 +13,12 @@ def post_perception():
 
             return blob_perception_analysis(blob)
         except KeyError as e:
-            abort(400,
-                  f"Cannot find key {e}, found {', '.join(packet.keys())}")
+            api_abort(
+                400, f"Cannot find key {e}, found {', '.join(packet.keys())}")
     else:
-        abort(400, f"Expected JSON, got {type(request.json).__name__}")
+        api_abort(400, f"Expected JSON, got {type(request.json).__name__}")
 
-    abort(500)
+    api_abort(500)
 
 
 @api.route('/textgen', methods=['POST'])
@@ -28,19 +27,27 @@ def post_gpt():
     if packet:
         try:
             context = packet['context']
+
             try:
                 generator = current_app.config['GPT_GENERATOR']
             except KeyError as e:
-                abort(503, "GPT model not initialized.")
+                api_abort(503, "GPT model not initialized.")
 
-            return gpt2_generate(context, generator)
+            original, translated = generator.predict(context)
+
+            return jsonify({
+                'original': original,
+                'translated': translated,
+                'errors': generator.errors
+            })
+
         except KeyError as e:
-            abort(400,
+            api_abort(400,
                   f"Cannot find key {e}, found {', '.join(packet.keys())}")
     else:
-        abort(400, f"Expected JSON, got {type(request.json).__name__}")
+        api_abort(400, f"Expected JSON, got {type(request.json).__name__}")
 
-    abort(500)
+    api_abort(500)
 
 
 @api.route('/pgg', methods=['GET'])
@@ -48,9 +55,9 @@ def get_pgg():
     try:
         model = current_app.config['PGG_MODEL']
     except KeyError as e:
-        abort(503, "PGG model not initialized.")
+        api_abort(503, "PGG model not initialized.")
 
-    return {"image": model.predict()}
+    return jsonify({"image": model.predict()})
 
     abort(500)
 
@@ -65,13 +72,13 @@ def post_transfer():
             try:
                 model = current_app.config['ST_MODEL']
             except KeyError as e:
-                abort(503, "Style Transfer model not initialized.")
+                api_abort(503, "Style Transfer model not initialized.")
 
-            return {"image": model.predict(content, style)}
+            return jsonify({"image": model.predict(content, style)})
         except KeyError as e:
-            abort(400,
+            api_abort(400,
                   f"Cannot find key {e}, found {', '.join(packet.keys())}")
     else:
-        abort(400, f"Expected JSON, got {type(request.json).__name__}")
+        api_abort(400, f"Expected JSON, got {type(request.json).__name__}")
 
-    abort(500)
+    api_pabort(500)

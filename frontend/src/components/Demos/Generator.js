@@ -34,9 +34,20 @@ export const Generator = () => {
 		return result;
 	};
 
+	const handleAPIErrors = (errors) => {
+		const warningList = errors.map((warn, index) => (
+			<div key={`err${index}`} className="alert alert-danger" role="alert">
+				{warn}
+			</div>
+		));
+
+		return warningList;
+	};
+
 	useEffect(() => {
+		console.log(response)
 		if (response.original) {
-			const original = <div key="owrap">{processText(response.original)}</div>;
+			const original = <div key="owrap">{processText(response.original)}</div>
 			const translated = response.translated ? (
 				<div key="twrap">
 					<h4 key="thead">Traducerea generării</h4>
@@ -54,12 +65,9 @@ export const Generator = () => {
 				translated,
 			];
 			setElements(resultElements);
-		} else if (response.error) {
-			setElements([
-				<div key="ebody" className="alert alert-danger" role="alert">
-					{response.error}
-				</div>,
-			]);
+		} else if (response.errors) {
+			const errors = handleAPIErrors(response.errors);
+			setElements(errors);
 		}
 	}, [response]);
 

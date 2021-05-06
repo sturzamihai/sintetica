@@ -105,7 +105,7 @@ export const StyleTransfer = () => {
 											className="custom-file-input"
 											name="content"
 											id="content"
-											accept=".jpef, .png, .jpg"
+											accept=".jpef, .png, .jpg, .jpeg"
 											onChange={setContentImage}
 										/>
 										<label className="custom-file-label" htmlFor="content">
@@ -131,7 +131,7 @@ export const StyleTransfer = () => {
 											className="custom-file-input"
 											name="style"
 											id="style"
-											accept=".jpef, .png, .jpg"
+											accept=".jpef, .png, .jpg, .jpeg"
 											onChange={setStyleImage}
 										/>
 										<label className="custom-file-label" htmlFor="style">

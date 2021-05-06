@@ -1,14 +1,9 @@
-from typing import BinaryIO
-import textblob, os, requests, torchvision, torch, base64, matplotlib, time,re
-from io import BytesIO
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
-from PIL import Image
-from random import randint
-import numpy as np
-import tensorflow as tf
-import matplotlib.image as mpimg
-
+from flask.helpers import make_response
+from flask.json import jsonify
+from flask import abort
+from nltk import text
+from tensorflow.python.autograph.core.ag_ctx import Status
+import textblob
 
 def blob_perception_analysis(message):
     blob = textblob.TextBlob(message)
@@ -47,7 +42,7 @@ def blob_perception_analysis(message):
         avg_polarity += sentence.sentiment.polarity
         avg_subjectivity += sentence.sentiment.subjectivity
 
-    return {
+    return jsonify({
         'sentences':
         len(blob.sentences),
         'tags':
@@ -59,39 +54,7 @@ def blob_perception_analysis(message):
         'summary':
         nouns,
         'warnings': api_warnings
-    }
+    })
 
-
-def gpt2_generate(context, generator):
-    blob = textblob.TextBlob(context)
-    translated_blob = blob
-
-    try:
-        if blob.detect_language() != 'en':
-            translated_blob = blob.translate()
-    except textblob.exceptions.NotTranslated:
-        return {
-            'error': 'Textul este prea scurt pentru a fi tradus în engleză'
-        }
-
-    original_generation = generator(
-        str(translated_blob),
-        max_length=len(context) * 10,
-        num_return_sequences=1)[0]['generated_text']
-    blob_generation = textblob.TextBlob(original_generation)
-
-    try:
-        if blob.detect_language() != 'en':
-            translated_generation = str(
-                blob_generation.translate(to=blob.detect_language()))
-        else:
-            translated_generation = None
-    except textblob.exceptions.NotTranslated as e:
-        translated_generation = e
-
-    results = {
-        'original': original_generation,
-        'translated': translated_generation
-    }
-
-    return results
+def api_abort(status, message):
+    abort(make_response(jsonify(status=status, error=message),status))
