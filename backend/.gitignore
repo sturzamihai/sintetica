@@ -137,7 +137,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# GPT-2
-models/gpt/model
-models/gpt/checkpoints
-models/gpt/shakespeare.txt
+.DS_Store

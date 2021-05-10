@@ -19,7 +19,7 @@ export const Perception = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ blob: blobData }),
 		};
-		await fetch("http://localhost:5000/api/perception", requestOptions)
+		await fetch(`${process.env.REACT_APP_API_LOCATION}/api/perception`, requestOptions)
 			.then((req) => req.json())
 			.then((data) => setResponse(data));
 

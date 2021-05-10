@@ -20,7 +20,7 @@ export const StyleTransfer = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ style: styleImage, content: contentImage }),
 		};
-		await fetch("http://localhost:5000/api/transfer", requestOptions)
+		await fetch(`${process.env.REACT_APP_API_LOCATION}/api/transfer`, requestOptions)
 			.then((req) => req.json())
 			.then((data) => setResponse(data));
 

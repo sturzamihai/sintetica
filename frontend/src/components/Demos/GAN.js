@@ -13,7 +13,7 @@ export const GAN = () => {
 
 		setRequested(true);
 
-		await fetch("http://localhost:5000/api/pgg")
+		await fetch(`${process.env.REACT_APP_API_LOCATION}/api/pgg`)
 			.then((req) => req.json())
 			.then((data) => setResponse(data));
 
