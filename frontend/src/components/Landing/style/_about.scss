@@ -19,6 +19,10 @@
         background: $primary_color;
 		transform: translateY(-3px);
 	}
+
+	@include media-breakpoint-down(md) {
+		height:200px !important;
+	}
 }
 
 .info-header {

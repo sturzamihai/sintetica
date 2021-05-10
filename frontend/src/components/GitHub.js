@@ -31,6 +31,7 @@ const GitHub = () => {
 							</p>
 							<a
 								href="https://github.com/sturzamihai/sintetica"
+								target="__blank"
 								className="btn github-link"
 							>
 								VEZI ACUM

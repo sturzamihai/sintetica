@@ -92,7 +92,7 @@ export const Generator = () => {
 							<label htmlFor="formData" className="form-label">
 								Scrie mai jos o propoziție cu care vrei să înceapă textul
 								generat (de preferat în engleză). Algoritmul folosit este{" "}
-								<a href="https://openai.com/blog/better-language-models/">
+								<a href="https://openai.com/blog/better-language-models/" target="__blank">
 									GPT-2
 								</a>
 								, un model state-of-the-art create de cei de la OpenAI.

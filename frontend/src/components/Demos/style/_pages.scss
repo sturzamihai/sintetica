@@ -59,3 +59,15 @@
 .results-row {
 	background-color: gray;
 }
+
+.api-image {
+	@include media-breakpoint-down(md) {
+        height: 200px;
+    }
+}
+
+.input-preview {
+	@include media-breakpoint-down(md) {
+        margin-bottom: 15px;
+    }
+}

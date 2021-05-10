@@ -13,3 +13,9 @@
 		color: $primary_color;
 	}
 }
+
+.footer-cta {
+	@include media-breakpoint-down(md) {
+        margin-top: 15px;
+    }
+}

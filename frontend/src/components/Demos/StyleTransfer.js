@@ -56,7 +56,7 @@ export const StyleTransfer = () => {
 		if (response.image) {
 			const resultElements = (
 				<img
-					className="mx-auto d-block"
+					className="mx-auto d-block api-image"
 					key="idata"
 					alt="Auto-Generated with Sintetica"
 					src={response.image}
@@ -94,7 +94,7 @@ export const StyleTransfer = () => {
 								Încarcă două imagini, reprezentative din punct de vedere al
 								contextului respectiv al stilului și descoperă cum algoritmul
 								dezvoltat de cercetătorii de la&nbsp;
-								<a href="https://www.tensorflow.org">Tensorflow</a>&nbsp;
+								<a href="https://www.tensorflow.org" target="__blank">Tensorflow</a>&nbsp;
 								încearcă să le îmbine, ajungând la rezultate nemaivăzute.
 							</label>
 							<div className="row">
@@ -119,7 +119,7 @@ export const StyleTransfer = () => {
 												src={contentImage}
 												height="150px"
 												alt="Content preview"
-												className="d-block mx-auto"
+												className="d-block mx-auto input-preview"
 											/>
 										</div>
 									)}

@@ -17,7 +17,7 @@ const Footer = () => {
 						<img src={Logo} height="50" />
 					</div>
 					<div className="col-lg-6 text-center text-lg-right">
-						<a href="/incearca" className="btn github-link">
+						<a href="/incearca" className="btn github-link footer-cta">
 							ÎNCEARCĂ
 						</a>
 					</div>
@@ -25,7 +25,7 @@ const Footer = () => {
 				<hr />
 				<div className="row">
 					<div className="col-lg-6 text-center text-lg-left">
-						<p>Creat cu 💜 de Mihai-George Sturza. </p>
+						<p>Creat cu 💙 de Mihai-George Sturza. </p>
 					</div>
 					<div className="col-lg-6 text-center text-lg-right ">
 						<a href="https://www.facebook.com/mihaigeorge.sturza/">

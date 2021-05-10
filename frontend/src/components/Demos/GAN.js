@@ -24,7 +24,7 @@ export const GAN = () => {
 		if (response.image) {
 			const resultElements = (
 				<img
-					className="mx-auto d-block"
+					className="mx-auto d-block api-image"
 					key="idata"
 					alt="Auto-Generated with Sintetica"
 					src={response.image}
@@ -62,7 +62,7 @@ export const GAN = () => {
 								Apăsând pe butonul "Generează" de mai jos, vei descoperi puterea
 								unui GAN(Generative Adversarial Network) care încearcă să imite
 								cât de bine poate un chip uman. Algoritmul folosit este&nbsp;
-								<a href="https://github.com/tkarras/progressive_growing_of_gans">
+								<a href="https://github.com/tkarras/progressive_growing_of_gans" target="__blank">
 									Progressive growing of GANs
 								</a>
 								, un model state-of-the-art create de cei de la nVidia.

@@ -34,6 +34,7 @@ const Navbar = () => {
 						<a
 							className="nav-link"
 							href="https://github.com/sturzamihai/sintetica"
+							target="__blank"
 						>
 							GITHUB
 						</a>
